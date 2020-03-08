@@ -12,121 +12,72 @@ module.exports = function toReadable(number) {
       "9": ["nine", "nineteen", "nine hundred"],
   };
 
+  const exts = {
+      "2": ['twenty', 'twenty'],
+      "3": ['thirty', 'thirty'],
+      "4": ['forty', 'forty'],
+      "5": ['fifty', 'fifty'],
+      "6": ['sixty', 'sixty'],
+      "7": ['seventy', 'seventy'],
+      "8": ['eighty', 'eighty'],
+      "9": ['ninety', 'ninety'],
+  };
   const arrNumber = number.toString().split('')
 
   if (arrNumber.length == 1) {
     return tmp1[arrNumber][0]
   }
-
+  
+  const arrNumberReverse = [...arrNumber].reverse()
   if (arrNumber.length == 2) {
-    const arrNumberReverse = [...arrNumber].reverse()
+    function fnCall(arrNumberReverse, ext) {
+      const [a, b] = ext;
+
+      return (arrNumberReverse[0] == 0) ? a : b + ' ' + tmp1[arrNumberReverse[0]][0];
+    }
 
     if (arrNumberReverse[1] == 0 || arrNumberReverse[1] == 1) {
       return tmp1[arrNumberReverse[0]][arrNumber.length - 1]
     }
 
-    if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 2) {
-      return (arrNumberReverse[0] == 0) ? 'twenty' : 'twenty' + ' ' + tmp1[arrNumberReverse[0]][0]
+    function fnCall2(dozenNumder) {
+      const condition = arrNumberReverse[1] == 0 || arrNumberReverse[1] == dozenNumder;
+
+      if (condition) {
+          return fnCall(arrNumberReverse, exts[dozenNumder]);
+      }
     }
 
-    if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 3) {
-      return (arrNumberReverse[0] == 0) ? 'thirty' : 'thirty' + ' ' + tmp1[arrNumberReverse[0]][0]
-    }
-
-    if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 4) {
-      return (arrNumberReverse[0] == 0) ? 'forty' : 'forty' + ' ' +tmp1[arrNumberReverse[0]][0]
-    }
-
-    if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 5) {
-      return (arrNumberReverse[0] == 0) ? 'fifty' : 'fifty' + ' ' +tmp1[arrNumberReverse[0]][0]
-    }
-
-    if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 6) {
-      return (arrNumberReverse[0] == 0) ? 'sixty' : 'sixty' + ' ' +tmp1[arrNumberReverse[0]][0]
-    }
-
-    if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 7) {
-      return (arrNumberReverse[0] == 0) ? 'seventy' : 'seventy' + ' ' +tmp1[arrNumberReverse[0]][0]
-    }
-
-    if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 8) {
-      return (arrNumberReverse[0] == 0) ? 'eighty' : 'eighty' + ' ' +tmp1[arrNumberReverse[0]][0]
-    }
-
-    if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 9) {
-      return (arrNumberReverse[0] == 0) ? 'ninety' : 'ninety' + ' ' +tmp1[arrNumberReverse[0]][0]
-    }
+    return fnCall2(arrNumberReverse[1]);
   }
 
   if (arrNumber.length == 3) {
-    const arrNumberReverse = [...arrNumber].reverse()
-// 1
+
+    function fnCall4(numCon) {
+      const [a, b] = exts[arrNumberReverse[1]];
+    
+      return (arrNumberReverse[0] == 0) 
+      ? tmp1[arrNumberReverse[2]][2] + " " + a
+      : tmp1[arrNumberReverse[2]][2] + " " + b + ' ' + tmp1[arrNumberReverse[0]][0]
+    }
+
      if ( arrNumberReverse[2] == 1 ) {
 
         if (arrNumberReverse[1] == 0 && arrNumberReverse[0] == 0) {
           return tmp1[arrNumberReverse[2]][2]
         }
-
+    
         if (arrNumberReverse[1] == 0) {
           return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][0]
         }
 
-        if (arrNumberReverse[1] == 0 || arrNumberReverse[1] == 1) {
+        if (arrNumberReverse[1] == 1) {
           return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][1]
         }
 
-        if (arrNumberReverse[1] == 0 || arrNumberReverse[1] == 1) {
-          return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][1]
-        }
-
-        if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 2) {
-          return (arrNumberReverse[0] == 0) 
-          ? tmp1[arrNumberReverse[2]][2] + " " + 'twenty' 
-          : tmp1[arrNumberReverse[2]][2] + " " +'twenty' + ' ' + tmp1[arrNumberReverse[0]][0]
-        }
-
-        if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 3) {
-          return (arrNumberReverse[0] == 0) 
-          ? tmp1[arrNumberReverse[2]][2] + " " + 'thirty' 
-          : tmp1[arrNumberReverse[2]][2] + " " +'thirty' + ' ' + tmp1[arrNumberReverse[0]][0]
-        }
-
-        if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 4) {
-          return (arrNumberReverse[0] == 0) 
-          ? tmp1[arrNumberReverse[2]][2] + " " + 'forty' 
-          : tmp1[arrNumberReverse[2]][2] + " " +'forty' + ' ' + tmp1[arrNumberReverse[0]][0]
-        }
-
-        if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 5) {
-          return (arrNumberReverse[0] == 0) 
-          ? tmp1[arrNumberReverse[2]][2] + " " + 'fifty' 
-          : tmp1[arrNumberReverse[2]][2] + " " +'fifty' + ' ' + tmp1[arrNumberReverse[0]][0]
-        }
-
-        if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 6) {
-          return (arrNumberReverse[0] == 0) 
-          ? tmp1[arrNumberReverse[2]][2] + " " + 'sixty' 
-          : tmp1[arrNumberReverse[2]][2] + " " +'sixty' + ' ' + tmp1[arrNumberReverse[0]][0]
-        }
-
-        if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 7) {
-          return (arrNumberReverse[0] == 0) 
-          ? tmp1[arrNumberReverse[2]][2] + " " + 'seventy' 
-          : tmp1[arrNumberReverse[2]][2] + " " +'seventy' + ' ' + tmp1[arrNumberReverse[0]][0]
-        }
-
-        if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 8) {
-          return (arrNumberReverse[0] == 0) 
-          ? tmp1[arrNumberReverse[2]][2] + " " + 'eighty' 
-          : tmp1[arrNumberReverse[2]][2] + " " +'eighty' + ' ' + tmp1[arrNumberReverse[0]][0]
-        }
-
-        if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 9) {
-          return (arrNumberReverse[0] == 0) 
-          ? tmp1[arrNumberReverse[2]][2] + " " + 'ninety' 
-          : tmp1[arrNumberReverse[2]][2] + " " +'ninety' + ' ' + tmp1[arrNumberReverse[0]][0]
-        }
+        return fnCall4(arrNumberReverse[1])
      }
+
 // 2
      if ( arrNumberReverse[2] == 2 ) {
 
@@ -146,57 +97,13 @@ module.exports = function toReadable(number) {
         return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][1]
       }
 
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 2) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'twenty' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'twenty' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 3) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'thirty' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'thirty' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 4) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'forty' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'forty' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 5) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'fifty' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'fifty' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 6) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'sixty' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'sixty' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 7) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'seventy' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'seventy' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 8) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'eighty' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'eighty' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 9) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'ninety' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'ninety' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
+      return fnCall4(arrNumberReverse[1])
    }
+
     // 3
     if ( arrNumberReverse[2] == 3 ) {
 
+    // TODO 
       if (arrNumberReverse[1] == 0 && arrNumberReverse[0] == 0) {
         return tmp1[arrNumberReverse[2]][2]
       }
@@ -209,61 +116,12 @@ module.exports = function toReadable(number) {
         return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][1]
       }
 
-      if (arrNumberReverse[1] == 0 || arrNumberReverse[1] == 1) {
-        return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][1]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 2) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'twenty' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'twenty' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 3) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'thirty' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'thirty' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 4) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'forty' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'forty' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 5) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'fifty' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'fifty' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 6) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'sixty' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'sixty' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 7) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'seventy' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'seventy' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 8) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'eighty' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'eighty' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 9) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'ninety' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'ninety' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
+      return fnCall4(arrNumberReverse[1])
     }
     // 4
     if ( arrNumberReverse[2] == 4 ) {
 
+   // TODO 
       if (arrNumberReverse[1] == 0 && arrNumberReverse[0] == 0) {
         return tmp1[arrNumberReverse[2]][2]
       }
@@ -276,65 +134,18 @@ module.exports = function toReadable(number) {
         return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][1]
       }
 
-      if (arrNumberReverse[1] == 0 || arrNumberReverse[1] == 1) {
-        return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][1]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 2) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'twenty' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'twenty' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 3) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'thirty' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'thirty' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 4) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'forty' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'forty' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 5) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'fifty' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'fifty' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 6) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'sixty' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'sixty' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 7) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'seventy' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'seventy' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 8) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'eighty' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'eighty' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 9) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'ninety' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'ninety' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
+      return fnCall4(arrNumberReverse[1])
     }
+
     // 5
     if ( arrNumberReverse[2] == 5 ) {
 
+   // TODO 
       if (arrNumberReverse[1] == 0 && arrNumberReverse[0] == 0) {
         return tmp1[arrNumberReverse[2]][2]
       }
 
+    //  TODO
       if (arrNumberReverse[1] == 0) {
         return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][0]
       }
@@ -343,259 +154,66 @@ module.exports = function toReadable(number) {
         return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][1]
       }
 
+      return fnCall4(arrNumberReverse[1])
+    }
+
+    // 6
+    if ( arrNumberReverse[2] == 6 ) {
+
+        if (arrNumberReverse[1] == 0 && arrNumberReverse[0] == 0) {
+          return tmp1[arrNumberReverse[2]][2]
+        }
+
+    //  TODO
+        if (arrNumberReverse[1] == 0) {
+          return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][0]
+        }
+
+        if (arrNumberReverse[1] == 0 || arrNumberReverse[1] == 1) {
+          return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][1]
+        }
+
+        return fnCall4(arrNumberReverse[1])
+
+      }
+    // 7
+    if ( arrNumberReverse[2] == 7 ) {
+
+      if (arrNumberReverse[1] == 0 && arrNumberReverse[0] == 0) {
+        return tmp1[arrNumberReverse[2]][2]
+      }
+
+    //  TODO
+      if (arrNumberReverse[1] == 0) {
+        return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][0]
+      }
+
       if (arrNumberReverse[1] == 0 || arrNumberReverse[1] == 1) {
         return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][1]
       }
 
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 2) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'twenty' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'twenty' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 3) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'thirty' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'thirty' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 4) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'forty' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'forty' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 5) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'fifty' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'fifty' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 6) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'sixty' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'sixty' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 7) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'seventy' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'seventy' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 8) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'eighty' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'eighty' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 9) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'ninety' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'ninety' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
+      return fnCall4(arrNumberReverse[1])
     }
-    // 6
-    if ( arrNumberReverse[2] == 6 ) {
 
-            if (arrNumberReverse[1] == 0 && arrNumberReverse[0] == 0) {
-              return tmp1[arrNumberReverse[2]][2]
-            }
-
-            if (arrNumberReverse[1] == 0) {
-              return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][0]
-            }
-
-            if (arrNumberReverse[1] == 0 || arrNumberReverse[1] == 1) {
-              return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][1]
-            }
-
-            if (arrNumberReverse[1] == 0 || arrNumberReverse[1] == 1) {
-              return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][1]
-            }
-
-            if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 2) {
-              return (arrNumberReverse[0] == 0) 
-              ? tmp1[arrNumberReverse[2]][2] + " " + 'twenty' 
-              : tmp1[arrNumberReverse[2]][2] + " " +'twenty' + ' ' + tmp1[arrNumberReverse[0]][0]
-            }
-
-            if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 3) {
-              return (arrNumberReverse[0] == 0) 
-              ? tmp1[arrNumberReverse[2]][2] + " " + 'thirty' 
-              : tmp1[arrNumberReverse[2]][2] + " " +'thirty' + ' ' + tmp1[arrNumberReverse[0]][0]
-            }
-
-            if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 4) {
-              return (arrNumberReverse[0] == 0) 
-              ? tmp1[arrNumberReverse[2]][2] + " " + 'forty' 
-              : tmp1[arrNumberReverse[2]][2] + " " +'forty' + ' ' + tmp1[arrNumberReverse[0]][0]
-            }
-
-            if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 5) {
-              return (arrNumberReverse[0] == 0) 
-              ? tmp1[arrNumberReverse[2]][2] + " " + 'fifty' 
-              : tmp1[arrNumberReverse[2]][2] + " " +'fifty' + ' ' + tmp1[arrNumberReverse[0]][0]
-            }
-
-            if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 6) {
-              return (arrNumberReverse[0] == 0) 
-              ? tmp1[arrNumberReverse[2]][2] + " " + 'sixty' 
-              : tmp1[arrNumberReverse[2]][2] + " " +'sixty' + ' ' + tmp1[arrNumberReverse[0]][0]
-            }
-
-            if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 7) {
-              return (arrNumberReverse[0] == 0) 
-              ? tmp1[arrNumberReverse[2]][2] + " " + 'seventy' 
-              : tmp1[arrNumberReverse[2]][2] + " " +'seventy' + ' ' + tmp1[arrNumberReverse[0]][0]
-            }
-
-            if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 8) {
-              return (arrNumberReverse[0] == 0) 
-              ? tmp1[arrNumberReverse[2]][2] + " " + 'eighty' 
-              : tmp1[arrNumberReverse[2]][2] + " " +'eighty' + ' ' + tmp1[arrNumberReverse[0]][0]
-            }
-
-            if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 9) {
-              return (arrNumberReverse[0] == 0) 
-              ? tmp1[arrNumberReverse[2]][2] + " " + 'ninety' 
-              : tmp1[arrNumberReverse[2]][2] + " " +'ninety' + ' ' + tmp1[arrNumberReverse[0]][0]
-            }
-        }
-    // 7
-    if ( arrNumberReverse[2] == 7 ) {
-
-            if (arrNumberReverse[1] == 0 && arrNumberReverse[0] == 0) {
-              return tmp1[arrNumberReverse[2]][2]
-            }
-
-            if (arrNumberReverse[1] == 0) {
-              return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][0]
-            }
-
-            if (arrNumberReverse[1] == 0 || arrNumberReverse[1] == 1) {
-              return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][1]
-            }
-
-            if (arrNumberReverse[1] == 0 || arrNumberReverse[1] == 1) {
-              return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][1]
-            }
-
-            if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 2) {
-              return (arrNumberReverse[0] == 0) 
-              ? tmp1[arrNumberReverse[2]][2] + " " + 'twenty' 
-              : tmp1[arrNumberReverse[2]][2] + " " +'twenty' + ' ' + tmp1[arrNumberReverse[0]][0]
-            }
-
-            if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 3) {
-              return (arrNumberReverse[0] == 0) 
-              ? tmp1[arrNumberReverse[2]][2] + " " + 'thirty' 
-              : tmp1[arrNumberReverse[2]][2] + " " +'thirty' + ' ' + tmp1[arrNumberReverse[0]][0]
-            }
-
-            if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 4) {
-              return (arrNumberReverse[0] == 0) 
-              ? tmp1[arrNumberReverse[2]][2] + " " + 'forty' 
-              : tmp1[arrNumberReverse[2]][2] + " " +'forty' + ' ' + tmp1[arrNumberReverse[0]][0]
-            }
-
-            if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 5) {
-              return (arrNumberReverse[0] == 0) 
-              ? tmp1[arrNumberReverse[2]][2] + " " + 'fifty' 
-              : tmp1[arrNumberReverse[2]][2] + " " +'fifty' + ' ' + tmp1[arrNumberReverse[0]][0]
-            }
-
-            if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 6) {
-              return (arrNumberReverse[0] == 0) 
-              ? tmp1[arrNumberReverse[2]][2] + " " + 'sixty' 
-              : tmp1[arrNumberReverse[2]][2] + " " +'sixty' + ' ' + tmp1[arrNumberReverse[0]][0]
-            }
-
-            if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 7) {
-              return (arrNumberReverse[0] == 0) 
-              ? tmp1[arrNumberReverse[2]][2] + " " + 'seventy' 
-              : tmp1[arrNumberReverse[2]][2] + " " +'seventy' + ' ' + tmp1[arrNumberReverse[0]][0]
-            }
-
-            if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 8) {
-              return (arrNumberReverse[0] == 0) 
-              ? tmp1[arrNumberReverse[2]][2] + " " + 'eighty' 
-              : tmp1[arrNumberReverse[2]][2] + " " +'eighty' + ' ' + tmp1[arrNumberReverse[0]][0]
-            }
-
-            if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 9) {
-              return (arrNumberReverse[0] == 0) 
-              ? tmp1[arrNumberReverse[2]][2] + " " + 'ninety' 
-              : tmp1[arrNumberReverse[2]][2] + " " +'ninety' + ' ' + tmp1[arrNumberReverse[0]][0]
-            }
-        }
     // 8
     if ( arrNumberReverse[2] == 8 ) {
 
-            if (arrNumberReverse[1] == 0 && arrNumberReverse[0] == 0) {
-              return tmp1[arrNumberReverse[2]][2]
-            }
-
-            if (arrNumberReverse[1] == 0) {
-              return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][0]
-            }
-
-            if (arrNumberReverse[1] == 0 || arrNumberReverse[1] == 1) {
-              return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][1]
-            }
-
-            if (arrNumberReverse[1] == 0 || arrNumberReverse[1] == 1) {
-              return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][1]
-            }
-
-            if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 2) {
-              return (arrNumberReverse[0] == 0) 
-              ? tmp1[arrNumberReverse[2]][2] + " " + 'twenty' 
-              : tmp1[arrNumberReverse[2]][2] + " " +'twenty' + ' ' + tmp1[arrNumberReverse[0]][0]
-            }
-
-            if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 3) {
-              return (arrNumberReverse[0] == 0) 
-              ? tmp1[arrNumberReverse[2]][2] + " " + 'thirty' 
-              : tmp1[arrNumberReverse[2]][2] + " " +'thirty' + ' ' + tmp1[arrNumberReverse[0]][0]
-            }
-
-            if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 4) {
-              return (arrNumberReverse[0] == 0) 
-              ? tmp1[arrNumberReverse[2]][2] + " " + 'forty' 
-              : tmp1[arrNumberReverse[2]][2] + " " +'forty' + ' ' + tmp1[arrNumberReverse[0]][0]
-            }
-
-            if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 5) {
-              return (arrNumberReverse[0] == 0) 
-              ? tmp1[arrNumberReverse[2]][2] + " " + 'fifty' 
-              : tmp1[arrNumberReverse[2]][2] + " " +'fifty' + ' ' + tmp1[arrNumberReverse[0]][0]
-            }
-
-            if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 6) {
-              return (arrNumberReverse[0] == 0) 
-              ? tmp1[arrNumberReverse[2]][2] + " " + 'sixty' 
-              : tmp1[arrNumberReverse[2]][2] + " " +'sixty' + ' ' + tmp1[arrNumberReverse[0]][0]
-            }
-
-            if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 7) {
-              return (arrNumberReverse[0] == 0) 
-              ? tmp1[arrNumberReverse[2]][2] + " " + 'seventy' 
-              : tmp1[arrNumberReverse[2]][2] + " " +'seventy' + ' ' + tmp1[arrNumberReverse[0]][0]
-            }
-
-            if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 8) {
-              return (arrNumberReverse[0] == 0) 
-              ? tmp1[arrNumberReverse[2]][2] + " " + 'eighty' 
-              : tmp1[arrNumberReverse[2]][2] + " " +'eighty' + ' ' + tmp1[arrNumberReverse[0]][0]
-            }
-
-            if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 9) {
-              return (arrNumberReverse[0] == 0) 
-              ? tmp1[arrNumberReverse[2]][2] + " " + 'ninety' 
-              : tmp1[arrNumberReverse[2]][2] + " " +'ninety' + ' ' + tmp1[arrNumberReverse[0]][0]
-            }
+      if (arrNumberReverse[1] == 0 && arrNumberReverse[0] == 0) {
+          return tmp1[arrNumberReverse[2]][2]
         }
+
+    //  TODO
+        if (arrNumberReverse[1] == 0) {
+          return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][0]
+        }
+
+        if (arrNumberReverse[1] == 0 || arrNumberReverse[1] == 1) {
+          return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][1]
+        }
+
+        return fnCall4(arrNumberReverse[1])
+      }
+
     // 9
     if ( arrNumberReverse[2] == 9 ) {
 
@@ -603,6 +221,7 @@ module.exports = function toReadable(number) {
         return tmp1[arrNumberReverse[2]][2]
       }
 
+    //  TODO
       if (arrNumberReverse[1] == 0) {
         return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][0]
       }
@@ -611,58 +230,7 @@ module.exports = function toReadable(number) {
         return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][1]
       }
 
-      if (arrNumberReverse[1] == 0 || arrNumberReverse[1] == 1) {
-        return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][1]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 2) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'twenty' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'twenty' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 3) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'thirty' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'thirty' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 4) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'forty' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'forty' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 5) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'fifty' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'fifty' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 6) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'sixty' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'sixty' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 7) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'seventy' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'seventy' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 8) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'eighty' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'eighty' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if(arrNumberReverse[1] == 0 || arrNumberReverse[1] == 9) {
-        return (arrNumberReverse[0] == 0) 
-        ? tmp1[arrNumberReverse[2]][2] + " " + 'ninety' 
-        : tmp1[arrNumberReverse[2]][2] + " " +'ninety' + ' ' + tmp1[arrNumberReverse[0]][0]
-      }
+      return fnCall4(arrNumberReverse[1])
     }
   }
-
 }
