@@ -53,7 +53,19 @@ module.exports = function toReadable(number) {
 
   if (arrNumber.length == 3) {
 
-    function fnCall4(numCon) {
+    function getDozensInHundred(numCon) {
+      if (arrNumberReverse[1] == 0 && arrNumberReverse[0] == 0) {
+        return tmp1[arrNumberReverse[2]][2]
+      }
+
+      if (arrNumberReverse[1] == 0) {
+        return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][0]
+      }
+
+      if (arrNumberReverse[1] == 1) {
+        return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][1]
+      }
+
       const [a, b] = exts[arrNumberReverse[1]];
     
       return (arrNumberReverse[0] == 0) 
@@ -61,176 +73,46 @@ module.exports = function toReadable(number) {
       : tmp1[arrNumberReverse[2]][2] + " " + b + ' ' + tmp1[arrNumberReverse[0]][0]
     }
 
-     if ( arrNumberReverse[2] == 1 ) {
-
-        if (arrNumberReverse[1] == 0 && arrNumberReverse[0] == 0) {
-          return tmp1[arrNumberReverse[2]][2]
-        }
-    
-        if (arrNumberReverse[1] == 0) {
-          return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][0]
-        }
-
-        if (arrNumberReverse[1] == 1) {
-          return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][1]
-        }
-
-        return fnCall4(arrNumberReverse[1])
-     }
+    if ( arrNumberReverse[2] == 1 ) {
+      return getDozensInHundred(arrNumberReverse[1])
+    }
 
 // 2
-     if ( arrNumberReverse[2] == 2 ) {
-
-      if (arrNumberReverse[1] == 0 && arrNumberReverse[0] == 0) {
-        return tmp1[arrNumberReverse[2]][2]
-      }
-
-      if (arrNumberReverse[1] == 0) {
-        return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if (arrNumberReverse[1] == 0 || arrNumberReverse[1] == 1) {
-        return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][1]
-      }
-
-      if (arrNumberReverse[1] == 0 || arrNumberReverse[1] == 1) {
-        return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][1]
-      }
-
-      return fnCall4(arrNumberReverse[1])
-   }
+    if ( arrNumberReverse[2] == 2 ) {
+      return getDozensInHundred(arrNumberReverse[1])
+    }
 
     // 3
     if ( arrNumberReverse[2] == 3 ) {
-
-    // TODO 
-      if (arrNumberReverse[1] == 0 && arrNumberReverse[0] == 0) {
-        return tmp1[arrNumberReverse[2]][2]
-      }
-
-      if (arrNumberReverse[1] == 0) {
-        return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if (arrNumberReverse[1] == 0 || arrNumberReverse[1] == 1) {
-        return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][1]
-      }
-
-      return fnCall4(arrNumberReverse[1])
+      return getDozensInHundred(arrNumberReverse[1])
     }
     // 4
     if ( arrNumberReverse[2] == 4 ) {
-
-   // TODO 
-      if (arrNumberReverse[1] == 0 && arrNumberReverse[0] == 0) {
-        return tmp1[arrNumberReverse[2]][2]
-      }
-
-      if (arrNumberReverse[1] == 0) {
-        return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if (arrNumberReverse[1] == 0 || arrNumberReverse[1] == 1) {
-        return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][1]
-      }
-
-      return fnCall4(arrNumberReverse[1])
+      return getDozensInHundred(arrNumberReverse[1])
     }
 
     // 5
     if ( arrNumberReverse[2] == 5 ) {
-
-   // TODO 
-      if (arrNumberReverse[1] == 0 && arrNumberReverse[0] == 0) {
-        return tmp1[arrNumberReverse[2]][2]
-      }
-
-    //  TODO
-      if (arrNumberReverse[1] == 0) {
-        return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if (arrNumberReverse[1] == 0 || arrNumberReverse[1] == 1) {
-        return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][1]
-      }
-
-      return fnCall4(arrNumberReverse[1])
+      return getDozensInHundred(arrNumberReverse[1])
     }
 
     // 6
     if ( arrNumberReverse[2] == 6 ) {
-
-        if (arrNumberReverse[1] == 0 && arrNumberReverse[0] == 0) {
-          return tmp1[arrNumberReverse[2]][2]
-        }
-
-    //  TODO
-        if (arrNumberReverse[1] == 0) {
-          return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][0]
-        }
-
-        if (arrNumberReverse[1] == 0 || arrNumberReverse[1] == 1) {
-          return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][1]
-        }
-
-        return fnCall4(arrNumberReverse[1])
-
-      }
+      return getDozensInHundred(arrNumberReverse[1])
+    }
     // 7
     if ( arrNumberReverse[2] == 7 ) {
-
-      if (arrNumberReverse[1] == 0 && arrNumberReverse[0] == 0) {
-        return tmp1[arrNumberReverse[2]][2]
-      }
-
-    //  TODO
-      if (arrNumberReverse[1] == 0) {
-        return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if (arrNumberReverse[1] == 0 || arrNumberReverse[1] == 1) {
-        return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][1]
-      }
-
-      return fnCall4(arrNumberReverse[1])
+      return getDozensInHundred(arrNumberReverse[1])
     }
 
     // 8
     if ( arrNumberReverse[2] == 8 ) {
-
-      if (arrNumberReverse[1] == 0 && arrNumberReverse[0] == 0) {
-          return tmp1[arrNumberReverse[2]][2]
-        }
-
-    //  TODO
-        if (arrNumberReverse[1] == 0) {
-          return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][0]
-        }
-
-        if (arrNumberReverse[1] == 0 || arrNumberReverse[1] == 1) {
-          return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][1]
-        }
-
-        return fnCall4(arrNumberReverse[1])
+      return getDozensInHundred(arrNumberReverse[1])
       }
 
     // 9
     if ( arrNumberReverse[2] == 9 ) {
-
-      if (arrNumberReverse[1] == 0 && arrNumberReverse[0] == 0) {
-        return tmp1[arrNumberReverse[2]][2]
-      }
-
-    //  TODO
-      if (arrNumberReverse[1] == 0) {
-        return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][0]
-      }
-
-      if (arrNumberReverse[1] == 0 || arrNumberReverse[1] == 1) {
-        return tmp1[arrNumberReverse[2]][2] + " " + tmp1[arrNumberReverse[0]][1]
-      }
-
-      return fnCall4(arrNumberReverse[1])
+      return getDozensInHundred(arrNumberReverse[1])
     }
   }
 }
