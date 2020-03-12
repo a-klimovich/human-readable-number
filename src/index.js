@@ -73,45 +73,7 @@ module.exports = function toReadable(number) {
       : tmp1[arrNumberReverse[2]][2] + " " + b + ' ' + tmp1[arrNumberReverse[0]][0]
     }
 
-    if ( arrNumberReverse[2] == 1 ) {
-      return getDozensInHundred(arrNumberReverse[1])
-    }
-
-// 2
-    if ( arrNumberReverse[2] == 2 ) {
-      return getDozensInHundred(arrNumberReverse[1])
-    }
-
-    // 3
-    if ( arrNumberReverse[2] == 3 ) {
-      return getDozensInHundred(arrNumberReverse[1])
-    }
-    // 4
-    if ( arrNumberReverse[2] == 4 ) {
-      return getDozensInHundred(arrNumberReverse[1])
-    }
-
-    // 5
-    if ( arrNumberReverse[2] == 5 ) {
-      return getDozensInHundred(arrNumberReverse[1])
-    }
-
-    // 6
-    if ( arrNumberReverse[2] == 6 ) {
-      return getDozensInHundred(arrNumberReverse[1])
-    }
-    // 7
-    if ( arrNumberReverse[2] == 7 ) {
-      return getDozensInHundred(arrNumberReverse[1])
-    }
-
-    // 8
-    if ( arrNumberReverse[2] == 8 ) {
-      return getDozensInHundred(arrNumberReverse[1])
-      }
-
-    // 9
-    if ( arrNumberReverse[2] == 9 ) {
+    if (arrNumberReverse[2] !== 0) {
       return getDozensInHundred(arrNumberReverse[1])
     }
   }
